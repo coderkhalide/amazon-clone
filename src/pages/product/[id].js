@@ -1,10 +1,10 @@
 import Header from "../../components/Header"
 import Link from 'next/link'
-import styles from '../../styles/Details.module.css'
 import Image from "next/image"
 import { StarIcon } from "@heroicons/react/solid"
 import { useState } from "react"
 import Currency from 'react-currency-formatter';
+import Head from "next/head"
 
 function Details({product}) {
     const [showCart, setShowCart] = useState(false)
@@ -21,6 +21,9 @@ function Details({product}) {
 
     return (
         <>
+            <Head>
+                <title>{name} | Amazon</title>
+            </Head>
              <Header setShowCart={setShowCart} showCart={showCart} />
              <div className="bg-gray-200 p-10">
                 <div className="max-w-screen-xl mx-auto">

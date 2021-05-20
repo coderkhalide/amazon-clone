@@ -10,7 +10,7 @@ export default function Home({products}) {
   return (
     <div className="bg-gray-100">
       <Head>
-        <title>Amazon 2.0</title>
+        <title>Homepage - Amazon</title>
       </Head>
 
       <Header setShowCart={setShowCart} showCart={showCart} />
