@@ -7,6 +7,8 @@ import { useState } from "react"
 import Currency from 'react-currency-formatter';
 
 function Details({product}) {
+    const [showCart, setShowCart] = useState(false)
+    
     const { name, price, images, description, colors, company, stock, reviews, category, shipping } = product
     const [activeImage, setActiveImage] = useState(images[0].thumbnails.large.url)
 
@@ -19,7 +21,7 @@ function Details({product}) {
 
     return (
         <>
-             <Header />
+             <Header setShowCart={setShowCart} showCart={showCart} />
              <div className="bg-gray-200 p-10">
                 <div className="max-w-screen-xl mx-auto">
                     <span className="font-medium"><Link href='/'>Home</Link></span> / <span className="font-medium"><Link href='/'>Product</Link></span> / <span className="text-yellow-500">{product.name}</span>
@@ -68,7 +70,7 @@ function Details({product}) {
                                 <p className="text-xs text-gray-500">Free Next-day delivery</p>
                             </div>
                         )}
-                        <button className="w-full button">Add to Busket</button>
+                        <button onClick={() => setShowCart(true)}className="w-full button">Add to Busket</button>
                     </div>
                 </div>
             </main>
