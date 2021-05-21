@@ -5,14 +5,24 @@ import Currency from 'react-currency-formatter';
 import styles from "../styles/Product.module.css"
 import Link from 'next/link'
 import Fade from 'react-reveal/Fade';
+import { useDispatch } from "react-redux";
+import { addToBasket } from "../slices/basketSlice";
 
 function Product({id, title, price, description, image, shipping, colors, setShowCart}) {
+    const dispatch = useDispatch()
     const MAX_RATING = 5
     const MIN_RATING = 1
 
     const [rating] = useState(
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
     )
+
+    const addItemToBasket = () => {
+        const product = {id, title, price, description, image, shipping, colors}
+        
+        dispatch(addToBasket(product))
+        setShowCart(true)
+    }
 
     return (
         <Fade bottom>
@@ -46,7 +56,7 @@ function Product({id, title, price, description, image, shipping, colors, setSho
                     <p className="text-xs text-gray-500">Free Next-day delivery</p>
                 </div>
             )}
-            <button title="Please Click MEEEE" onClick={() => setShowCart(true)} className="mt-auto button">Add to Busket</button>
+            <button title="Please Click MEEEE" onClick={addItemToBasket} className="mt-auto button">Add to Busket</button>
         </div>
         </Fade>
     )

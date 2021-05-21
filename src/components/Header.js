@@ -8,8 +8,16 @@ import {
 import SideCart from "./SideCart";
 import Link from "next/link";
 import { useState } from "react";
+import { signIn, signOut, useSession } from 'next-auth/client'
+import { useRouter } from 'next/router';
+import { selectItems } from "../slices/basketSlice";
+import { useSelector } from "react-redux";
 
 function Header({setShowCart, showCart, products}) {
+    const [ session ] = useSession()
+    const router = useRouter()
+    const items = useSelector(selectItems)
+
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResults, setSearchResults] = useState([])
     const [showResults, setShowResults] = useState(false)
@@ -24,15 +32,14 @@ function Header({setShowCart, showCart, products}) {
         <div className="header" style={{ position: 'sticky', top: 0, zIndex: 50 }}>
             <div className="flex items-center bg-amazon_blue p-1 flex-grow py-2">
                 <div className="mt-2 flex items-center flex-grow sm:flex-grow-0">
-                    <Link href="/">
-                        <Image
-                            src="https://links.papareact.com/f90"
-                            width={150}
-                            height={40}
-                            objectFit="contain"
-                            className="cursor-pointer"
-                        />
-                    </Link>
+                    <Image
+                        src="https://links.papareact.com/f90"
+                        width={150}
+                        height={40}
+                        objectFit="contain"
+                        className="cursor-pointer"
+                        onClick={() => router.push('/')}
+                    />
                 </div>
 
                 {/* Search */}
@@ -66,16 +73,18 @@ function Header({setShowCart, showCart, products}) {
 
                 {/* Right */}
                 <div className="text-white flex items-center text-xs space-x-6 mx-6 whitespace-nowrap">
-                    <div className="link">
-                        <p>Hell, Khalid Saifullah</p>
+                    <div onClick={!session ? signIn : signOut} className="link">
+                        <p>
+                            {session ? `Hello, ${session.user.name}` : 'Sign In'}
+                        </p>
                         <p className="font-extrabold md:text-sm">Account & Links</p>
                     </div>
                     <div className="link">
                         <p>Returns</p>
                         <p className="font-extrabold md:text-sm">& Orders</p>
                     </div>
-                    <div title="Please Click MEEEE" onClick={() => setShowCart(true)} className="link relative flex items-center">
-                        <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded text-black font-bold">0</span>
+                    <div title="Please Click MEEEE" onClick={() => router.push('/checkout')} className="link relative flex items-center">
+                        <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded text-black font-bold">{items.length}</span>
                         <ShoppingCartIcon className="h-10 " />
                         <p className="font-extrabold md:text-sm hidden md:inline mt-2 ">Busket</p>
                     </div>
