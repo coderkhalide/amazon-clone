@@ -36,7 +36,7 @@ function Details({product}) {
                         <div className="w-full mb-4">
                             <Image className="w-full rounded-lg" width={700} height={500} objectFit="cover" src={activeImage} alt="" />
                         </div>
-                        <div className="flex items-center flex-wrap">
+                        <div className="flex items-center">
                             {images && images.map(image => (
                                 <div className="mr-3 mb-3 cursor-pointer" key={image.id} onClick={() => setActiveImage(image.thumbnails.large.url)}>
                                     <Image className="rounded-md" width={100} height={100} objectFit="cover" src={image.thumbnails.large.url} alt="" />
@@ -64,7 +64,7 @@ function Details({product}) {
                         <p className="text-yellow-500 text-2xl mb-7">
                             <Currency
                                 quantity={price}
-                                currency="EUR"
+                                currency="BDT"
                             />
                         </p>
                         {shipping && (

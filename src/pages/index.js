@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useState } from "react";
 import Banner from "../components/Banner";
+import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
 
@@ -15,12 +16,14 @@ export default function Home({products}) {
 
       <Header setShowCart={setShowCart} showCart={showCart} />
 
-      <main className="max-w-screen-2xl mx-auto">
+      <main className="mx-auto" style={{ maxWidth: '1920px' }}>
         {/* Banner */}
         <Banner />
         {/* Product feed */}
         <ProductFeed products={products} setShowCart={setShowCart} />
       </main>
+      
+      <Footer />
     </div>
   );
 }

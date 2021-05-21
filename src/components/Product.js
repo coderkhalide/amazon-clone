@@ -4,6 +4,7 @@ import { StarIcon } from "@heroicons/react/solid"
 import Currency from 'react-currency-formatter';
 import styles from "../styles/Product.module.css"
 import Link from 'next/link'
+import Fade from 'react-reveal/Fade';
 
 function Product({id, title, price, description, image, shipping, colors, setShowCart}) {
     const MAX_RATING = 5
@@ -14,16 +15,14 @@ function Product({id, title, price, description, image, shipping, colors, setSho
     )
 
     return (
+        <Fade bottom>
         <div className={"relative flex flex-col m-5 bg-white z-30 p-8 rounded-xl " + styles.loop_product}>
-            
-                {/* <> */}
-                    <Link href={`/product/${id}`}>
-                        <Image title="Please Click MEEEE" className={"cursor-pointer rounded-lg " + styles.loop_product_image} loading="lazy" src={image} width={500} height={400} objectFit="cover" />
-                    </Link>
-                    <Link href={`/product/${id}`}>
-                        <h4 className="cursor-pointer my-3 font-bold">{title}</h4>
-                    </Link>
-                {/* </> */}
+            <Link href={`/product/${id}`}>
+                <Image title="Please Click" className={"cursor-pointer rounded-lg " + styles.loop_product_image} loading="lazy" src={image} width={500} height={400} objectFit="cover" />
+            </Link>
+            <Link href={`/product/${id}`}>
+                <h4 title={title} className="cursor-pointer my-3 font-bold">{title}</h4>
+            </Link>
             
             <div className="flex">
                 {Array(rating).fill().map((_, index) => (
@@ -34,7 +33,7 @@ function Product({id, title, price, description, image, shipping, colors, setSho
             <div className="mb-1">
                 <Currency
                     quantity={price}
-                    currency="EUR"
+                    currency="BDT"
                 />
             </div>
             <div className="flex items-center my-4">
@@ -50,6 +49,7 @@ function Product({id, title, price, description, image, shipping, colors, setSho
             )}
             <button title="Please Click MEEEE" onClick={() => setShowCart(true)} className="mt-auto button">Add to Busket</button>
         </div>
+        </Fade>
     )
 }
 
