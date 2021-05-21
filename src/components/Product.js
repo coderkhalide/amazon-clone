@@ -33,7 +33,6 @@ function Product({id, title, price, description, image, shipping, colors, setSho
             <div className="mb-1">
                 <Currency
                     quantity={price}
-                    currency="BDT"
                 />
             </div>
             <div className="flex items-center my-4">

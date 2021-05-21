@@ -14,7 +14,7 @@ export default function Home({products}) {
         <title>Homepage - Amazon</title>
       </Head>
 
-      <Header setShowCart={setShowCart} showCart={showCart} />
+      <Header products={products} setShowCart={setShowCart} showCart={showCart} />
 
       <main className="mx-auto" style={{ maxWidth: '1920px' }}>
         {/* Banner */}

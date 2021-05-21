@@ -6,9 +6,8 @@ import { useState } from "react"
 import Currency from 'react-currency-formatter';
 import Head from "next/head"
 
-function Details({product}) {
+function Details({product, products}) {
     const [showCart, setShowCart] = useState(false)
-    
     const { name, price, images, description, colors, company, stock, reviews, category, shipping } = product
     const [activeImage, setActiveImage] = useState(images[0].thumbnails.large.url)
 
@@ -24,7 +23,7 @@ function Details({product}) {
             <Head>
                 <title>{name} | Amazon</title>
             </Head>
-             <Header setShowCart={setShowCart} showCart={showCart} />
+             <Header products={products} setShowCart={setShowCart} showCart={showCart} />
              <div className="bg-gray-200 p-10">
                 <div className="max-w-screen-xl mx-auto">
                     <span className="font-medium"><Link href='/'>Home</Link></span> / <span className="font-medium"><Link href='/'>Product</Link></span> / <span className="text-yellow-500">{product.name}</span>
@@ -64,7 +63,6 @@ function Details({product}) {
                         <p className="text-yellow-500 text-2xl mb-7">
                             <Currency
                                 quantity={price}
-                                currency="BDT"
                             />
                         </p>
                         {shipping && (
@@ -102,8 +100,9 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
     const id = context.params.id
     const product = await fetch('https://course-api.com/react-store-single-product?id=' + id).then(response => response.json())
+    const products = await fetch('https://course-api.com/react-store-products').then(response => response.json())
 
     return {
-        props: { product }
+        props: { product, products }
     }
 }
