@@ -26,7 +26,7 @@ function Details({product, products}) {
 
     const addItemToBasket = () => {
         // TODO: Color and quantity
-        dispatch(addToBasket(product))
+        dispatch(addToBasket({...product, title: product.name}))
         setShowCart(true)
     }
     return (
