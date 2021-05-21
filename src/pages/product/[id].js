@@ -5,6 +5,9 @@ import { StarIcon } from "@heroicons/react/solid"
 import { useState } from "react"
 import Currency from 'react-currency-formatter';
 import Head from "next/head"
+import styles from "../../styles/Product.module.css"
+import Product from "../../components/Product"
+import Footer from "../../components/Footer"
 
 function Details({product, products}) {
     const [showCart, setShowCart] = useState(false)
@@ -24,7 +27,7 @@ function Details({product, products}) {
                 <title>{name} | Amazon</title>
             </Head>
              <Header products={products} setShowCart={setShowCart} showCart={showCart} />
-             <div className="bg-gray-200 p-10">
+             <div className="bg-gray-200 p-10 mb-10">
                 <div className="max-w-screen-xl mx-auto">
                     <span className="font-medium"><Link href='/'>Home</Link></span> / <span className="font-medium"><Link href='/'>Product</Link></span> / <span className="text-yellow-500">{product.name}</span>
                 </div>
@@ -33,7 +36,7 @@ function Details({product, products}) {
                 <div className="flex flex-wrap">
                     <div className="px-5 mb-7 w-full md:w-7/12">
                         <div className="w-full mb-4">
-                            <Image className="w-full rounded-lg" width={700} height={500} objectFit="cover" src={activeImage} alt="" />
+                            <Image className={"w-full rounded-lg " + styles.product_image} width={700} height={500} objectFit="cover" src={activeImage} alt="" />
                         </div>
                         <div className="flex items-center">
                             {images && images.map(image => (
@@ -75,7 +78,18 @@ function Details({product, products}) {
                     </div>
                 </div>
             </main>
-             
+            <div className="mt-12 bg-gradient-to-t from-gray-100 to-transparent">
+                <div className="max-w-screen-2xl mx-auto">
+                    <h1 className="text-yellow-500 text-3xl mb-7">Related Projects</h1>
+                    <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                        {products && products.slice(0, 4).map(({ id, name, price, description, category, image, shipping, colors }) => (
+                            <Product setShowCart={setShowCart} key={id} id={id} name={name} title={name} shipping={shipping} price={price} description={description} category={category} image={image} colors={colors} />
+                        ))}
+                    </div>
+                </div>
+                <Footer />
+            </div>
+            
         </>
     )
 }
