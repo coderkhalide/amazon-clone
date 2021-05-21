@@ -8,8 +8,11 @@ import Head from "next/head"
 import styles from "../../styles/Product.module.css"
 import Product from "../../components/Product"
 import Footer from "../../components/Footer"
+import { useDispatch } from "react-redux"
+import { addToBasket } from "../../slices/basketSlice"
 
 function Details({product, products}) {
+    const dispatch = useDispatch()
     const [showCart, setShowCart] = useState(false)
     const { name, price, images, description, colors, company, stock, reviews, category, shipping } = product
     const [activeImage, setActiveImage] = useState(images[0].thumbnails.large.url)
@@ -21,6 +24,11 @@ function Details({product, products}) {
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
     )
 
+    const addItemToBasket = () => {
+        // TODO: Color and quantity
+        dispatch(addToBasket(product))
+        setShowCart(true)
+    }
     return (
         <>
             <Head>
@@ -74,7 +82,7 @@ function Details({product, products}) {
                                 <p className="text-xs text-gray-500">Free Next-day delivery</p>
                             </div>
                         )}
-                        <button onClick={() => setShowCart(true)}className="w-full button">Add to Busket</button>
+                        <button onClick={addItemToBasket}className="w-full button">Add to Busket</button>
                     </div>
                 </div>
             </main>
