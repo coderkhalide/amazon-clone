@@ -6,7 +6,7 @@ import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
 
 export default function Home({products}) {
-  const [showCart, setShowCart] = useState(true)
+  const [showCart, setShowCart] = useState(false)
 
   return (
     <div className="bg-gray-100">
