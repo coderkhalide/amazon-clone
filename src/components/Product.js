@@ -18,7 +18,7 @@ function Product({id, title, price, description, image, shipping, colors, setSho
     )
 
     const addItemToBasket = () => {
-        const product = {id, title, price, description, image, shipping, colors}
+        const product = {id, title, price, description, image, shipping, colors, quantity: 1}
         
         dispatch(addToBasket(product))
         setShowCart(true)

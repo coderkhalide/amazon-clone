@@ -10,12 +10,14 @@ import Product from "../../components/Product"
 import Footer from "../../components/Footer"
 import { useDispatch } from "react-redux"
 import { addToBasket } from "../../slices/basketSlice"
+import QuantityCount from "../../components/QuantityCount"
 
 function Details({product, products}) {
     const dispatch = useDispatch()
     const [showCart, setShowCart] = useState(false)
     const { name, price, images, description, colors, company, stock, reviews, category, shipping } = product
     const [activeImage, setActiveImage] = useState(images[0].thumbnails.large.url)
+    const [quantity, setQuantity] = useState(1)
 
     const MAX_RATING = 5
     const MIN_RATING = 1
@@ -25,10 +27,10 @@ function Details({product, products}) {
     )
 
     const addItemToBasket = () => {
-        // TODO: Color and quantity
-        dispatch(addToBasket({...product, title: product.name}))
+        dispatch(addToBasket({...product, title: product.name, quantity}))
         setShowCart(true)
     }
+
     return (
         <>
             <Head>
@@ -82,7 +84,8 @@ function Details({product, products}) {
                                 <p className="text-xs text-gray-500">Free Next-day delivery</p>
                             </div>
                         )}
-                        <button onClick={addItemToBasket}className="w-full button">Add to Busket</button>
+                        <QuantityCount setQuantity={setQuantity} quantity={quantity} />
+                        <button onClick={addItemToBasket}className="w-full button mt-4">Add to Busket</button>
                     </div>
                 </div>
             </main>

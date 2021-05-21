@@ -1,0 +1,26 @@
+.quantityCount{
+    display: flex;
+    align-items: center;
+}
+.counter{
+    min-width: 35px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    margin: 0 3px;
+}
+.actionBtn{
+    outline: none !important;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    background: #e8e8e8;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all .3s;
+    font-weight: bold;
+}
+.actionBtn:hover{
+    background: #d6d6d6;
+}

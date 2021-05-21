@@ -2,24 +2,20 @@ import Image from "next/image";
 import { StarIcon } from "@heroicons/react/solid"
 import { useState } from "react";
 import Currency from 'react-currency-formatter';
+import { removeFromBasket } from "../slices/basketSlice";
+import QuantityCount from "./QuantityCount";
 import { useDispatch } from "react-redux";
-import { addToBasket, removeFromBasket } from "../slices/basketSlice";
 
-function CheckoutProduct({id, title, price, description, image, shipping}) { // TODO: Color and quantity
+function CheckoutProduct({id, title, price, description, image, shipping, quantity}) { // TODO: Color and quantity
     const dispatch = useDispatch()
+    
     const MAX_RATING = 5
     const MIN_RATING = 1
+    const [quantityUp, setQuantityUp] = useState(quantity)
 
     const [rating] = useState(
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
     )
-
-    const addItemToBasket = () => {
-        const product = {id, title, price, description, image, shipping} // TODO: Color and quantity
-        
-        dispatch(addToBasket(product))
-    }
-
     const removeItemFromBasket = () => { 
         dispatch(removeFromBasket({ id }))
     }
@@ -43,7 +39,7 @@ function CheckoutProduct({id, title, price, description, image, shipping}) { // 
                 <p className="text-xs my-2 line-clamp-3">{description}</p>
                 <div className="text-gray-400">
                     <Currency
-                        quantity={price}
+                        quantity={price * quantity}
                     />
                 </div>
                 {shipping && (
@@ -55,7 +51,8 @@ function CheckoutProduct({id, title, price, description, image, shipping}) { // 
             </div>
 
             <div className="flex flex-col space-y-2 my-auto justify-self-end">
-                <button onClick={addItemToBasket} className="mt-auto button">Add to Busket</button>
+                {/* <button onClick={addItemToBasket} className="mt-auto button">Add to Busket</button> */}
+                <QuantityCount id={id} dispatch setQuantity={setQuantityUp} quantity={quantityUp}/>
                 <button onClick={removeItemFromBasket} className="mt-auto button">Remove from Busket</button>
             </div>
                 

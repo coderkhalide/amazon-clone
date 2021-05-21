@@ -8,8 +8,10 @@ export default NextAuth({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET
     }),
-    // TODO: Add facebook and github
-    // ...add more providers here
+    Providers.Facebook({
+      clientId: process.env.FACEBOOK_ID,
+      clientSecret: process.env.FACEBOOK_SECRET
+    })
   ],
 
 })

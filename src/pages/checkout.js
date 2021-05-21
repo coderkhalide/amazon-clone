@@ -6,14 +6,14 @@ import { selectItems, selectTotal } from "../slices/basketSlice"
 import Currency from 'react-currency-formatter';
 import { useSession } from "next-auth/client"
 
-function Checkout() {
+function Checkout({products}) {
     const [session] = useSession()
     const items = useSelector(selectItems)
     const totalPrice = useSelector(selectTotal)
 
     return (
         <div className="bg-gray-100">
-            <Header products={[]} />
+            <Header products={products} />
 
             <main className="md:flex max-w-screen-2xl mx-auto">
                 {/* Left */}
@@ -56,3 +56,12 @@ function Checkout() {
 }
 
 export default Checkout
+
+
+export async function getServerSideProps(context) {
+    const products = await fetch('https://course-api.com/react-store-products').then(response => response.json())
+  
+    return { props: {
+      products
+    } }
+}
