@@ -94,7 +94,7 @@ function Details({product, products}) {
                     <h1 className="text-yellow-500 text-3xl mb-7">Related Projects</h1>
                     <div className="grid grid-flow-row-dense md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                         {products && products.slice(0, 4).map(({ id, name, price, description, category, image, shipping, colors }) => (
-                            <Product setShowCart={setShowCart} key={id} id={id} name={name} title={name} shipping={shipping} price={price} description={description} category={category} image={image} colors={colors} />
+                            <Product products={products} setShowCart={setShowCart} key={id} id={id} name={name} title={name} shipping={shipping} price={price} description={description} category={category} image={image} colors={colors} />
                         ))}
                     </div>
                 </div>

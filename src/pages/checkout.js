@@ -26,7 +26,7 @@ function Checkout({products}) {
                         </h1>
 
                         {!!items.length && items.map(item => (
-                            <CheckoutProduct key={Math.random()} {...item} />
+                            <CheckoutProduct key={item.id} {...item} />
                         ))}
                     </div>
 

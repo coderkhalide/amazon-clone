@@ -3,8 +3,8 @@ import {
     MenuIcon, 
     SearchIcon, 
     ShoppingCartIcon
- } from '@heroicons/react/outline'
- import Currency from 'react-currency-formatter';
+} from '@heroicons/react/outline'
+import Currency from 'react-currency-formatter';
 import SideCart from "./SideCart";
 import Link from "next/link";
 import { useState } from "react";
