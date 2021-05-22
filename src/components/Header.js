@@ -24,7 +24,7 @@ function Header({setShowCart, showCart, products}) {
 
     const handleSearch = e => {
         setSearchTerm(e.target.value)
-        setSearchResults(products.filter(product => product.name.includes(searchTerm)))
+        setSearchResults(products?.filter(product => product.name.includes(searchTerm)))
     }
 
     return (
@@ -49,7 +49,7 @@ function Header({setShowCart, showCart, products}) {
                     
                     {showResults && (
                         <div onClick={() => setShowResults(true)} onMouseOver={() => setShowResults(true)} onMouseLeave={() => setShowResults(false)} className="absolute w-full bg-white bottom-0 z-10 rounded-md" style={{ transform: 'translateY(100%)', height: 'auto', maxHeight: '400px', overflowY: 'auto' }}>
-                            {(!!searchResults.length) ? searchResults.map(({id, name, price, category}) => (
+                            {(!!searchResults?.length) ? searchResults.map(({id, name, price, category}) => (
                                 <div key={Math.random()} className="p-2 mt-2 border-b-2 rounded-md border-gray-100 bg-gray-50">
                                     <Link href={`/product/${id}`}>
                                         <h5 className="font-medium text-sm text-gray-600">{name}</h5>
@@ -79,9 +79,9 @@ function Header({setShowCart, showCart, products}) {
                         </p>
                         <p className="font-extrabold md:text-sm">Account & Links</p>
                     </div>
-                    <div className="link" onClick={() => router.push('/product')}>
-                        <p>Check</p>
-                        <p className="font-extrabold md:text-sm">All Products</p>
+                    <div className="link" onClick={() => router.push('/orders')}>
+                        <p>Retuen</p>
+                        <p className="font-extrabold md:text-sm">& Orders</p>
                     </div>
                     <div title="Please Click MEEEE" onClick={() => router.push('/checkout')} className="link relative flex items-center">
                         <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded text-black font-bold">{items.length}</span>

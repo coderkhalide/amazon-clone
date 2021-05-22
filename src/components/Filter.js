@@ -8,7 +8,6 @@ import 'react-input-range/lib/css/index.css'
 
 function Filter() {
     const dispatch = useDispatch()
-    const filteredProducts = useSelector(selectFilteredProducts)
     const all_products = useSelector(selectProducts)
     const [activeCategory, setActiveCategory] = useState('all')
     const [activeCompany, setActiveCompany] = useState('all')
@@ -16,7 +15,7 @@ function Filter() {
     const [lastChange, setLastChange] = useState(null)
     const [showClear, setShowClear] = useState(false)
     const [price, setPrice] = useState(0)
-    const [priceMax, setPriceMax] = useState(0)
+    const [priceMax, setPriceMax] = useState(1)
 
     const categories = all_products ? getUniqueValues(all_products, 'category') : null
     const companys = all_products ? getUniqueValues(all_products, 'company') : null

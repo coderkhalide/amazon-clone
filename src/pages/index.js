@@ -1,3 +1,4 @@
+import { getSession } from "next-auth/client";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -37,9 +38,11 @@ export default function Home({products}) {
 
 
 export async function getServerSideProps(context) {
+  const session = await getSession(context)
+
   const products = await fetch('https://course-api.com/react-store-products').then(response => response.json())
 
   return { props: {
-    products
+    products, session
   } }
 }
