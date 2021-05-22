@@ -89,7 +89,7 @@ function Filter() {
         const max = all_products?.map(product => product.price).reduce((a, b) =>  Math.max(a, b))
         setPriceMax(max)
         setPrice(max)
-    }, [])
+    }, [all_products])
     
     const clearAllFilters = () => {
         dispatch(clearFilters())
