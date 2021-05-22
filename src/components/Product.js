@@ -12,7 +12,7 @@ import {
 } from '@heroicons/react/outline'
 import QuickView from "./QuickView";
 
-function Product({id, title, price, description, image, shipping, colors, setShowCart, products}) {
+function Product({id, title, price, description, image, shipping, colors, company, setShowCart, products}) {
     const dispatch = useDispatch()
     const MAX_RATING = 5
     const MIN_RATING = 1
@@ -33,10 +33,10 @@ function Product({id, title, price, description, image, shipping, colors, setSho
             <Fade bottom>
                 <>
                 <div className={"relative flex flex-col m-5 z-40 bg-white p-8 rounded-xl " + styles.loop_product}>
-                    <div className={`relative ${styles.product_image_wrapper}`}>
-                        <Image className={"cursor-pointer rounded-lg w-full " + styles.loop_product_image} loading="lazy" src={image} width={500} height={400} objectFit="cover" />
+                    <div className={`relative rounded-lg ${styles.product_image_wrapper}`}>
+                        <Image className={"cursor-pointer rounded-lg overflow-hidden w-full " + styles.loop_product_image} loading="lazy" src={image} width={800} height={500} objectFit="cover" />
                         <div className={ `rounded-lg ${styles.product_image_overly}`}>
-                            <div onClick={() => setShowQuick(true)} className={`button rounded-md ${styles.product_image_overly_button}`}>
+                            <div onClick={() => setShowQuick(true)} className={`button rounded-lg ${styles.product_image_overly_button}`}>
                                 <span>Quick View</span>
                                 <EyeIcon className="h-6" />
                             </div>
@@ -45,6 +45,7 @@ function Product({id, title, price, description, image, shipping, colors, setSho
                     <Link href={`/product/${id}`}>
                         <h4 title={title} className="cursor-pointer my-3 font-bold">{title}</h4>
                     </Link>
+                    {company}
                     
                     <div className="flex">
                         {Array(rating).fill().map((_, index) => (

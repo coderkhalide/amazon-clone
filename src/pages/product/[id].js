@@ -39,7 +39,7 @@ function Details({product, products}) {
              <Header products={products} setShowCart={setShowCart} showCart={showCart} />
              <div className="bg-gray-200 p-10 mb-10">
                 <div className="max-w-screen-xl mx-auto">
-                    <span className="font-medium"><Link href='/'>Home</Link></span> / <span className="font-medium"><Link href='/'>Product</Link></span> / <span className="text-yellow-500">{product.name}</span>
+                    <span className="font-medium"><Link href='/'>Home</Link></span> / <span className="font-medium"><Link href='/product'>Product</Link></span> / <span className="text-yellow-500">{product.name}</span>
                 </div>
             </div>
              <main className="max-w-screen-xl mx-auto mt-5">

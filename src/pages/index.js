@@ -1,12 +1,19 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Banner from "../components/Banner";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import ProductFeed from "../components/ProductFeed";
+import { addProducts } from "../slices/basketSlice"
 
 export default function Home({products}) {
+  const dispatch = useDispatch()
   const [showCart, setShowCart] = useState(false)
+
+  useEffect(() => {
+    dispatch(addProducts(products))
+  }, [products])
 
   return (
     <div className="bg-gray-100">

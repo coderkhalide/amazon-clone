@@ -79,9 +79,9 @@ function Header({setShowCart, showCart, products}) {
                         </p>
                         <p className="font-extrabold md:text-sm">Account & Links</p>
                     </div>
-                    <div className="link">
-                        <p>Returns</p>
-                        <p className="font-extrabold md:text-sm">& Orders</p>
+                    <div className="link" onClick={() => router.push('/product')}>
+                        <p>Check</p>
+                        <p className="font-extrabold md:text-sm">All Products</p>
                     </div>
                     <div title="Please Click MEEEE" onClick={() => router.push('/checkout')} className="link relative flex items-center">
                         <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded text-black font-bold">{items.length}</span>
@@ -92,7 +92,7 @@ function Header({setShowCart, showCart, products}) {
             </div>
 
             {/* Bottom nav */}
-            <div className="flex space-x-3 p-2 pl-6 items-center bg-amazon_blue-light text-white text-sm">
+            <div onClick={() => router.push('/product')} className="flex space-x-3 p-2 pl-6 items-center bg-amazon_blue-light text-white text-sm">
                 <p className="link flex items-center"> 
                     <MenuIcon className="h-6 mr-1"/>
                     All

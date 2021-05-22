@@ -39,6 +39,9 @@ function CheckoutProduct({id, title, price, description, image, shipping, quanti
                 <p className="text-xs my-2 line-clamp-3">{description}</p>
                 <div className="text-gray-400">
                     <Currency
+                        quantity={price}
+                    /> {" * "} {quantity} {" = "}
+                    <Currency
                         quantity={price * quantity}
                     />
                 </div>

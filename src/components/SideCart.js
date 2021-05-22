@@ -26,7 +26,7 @@ function SideCart({setShowCart}) {
                 </div>
                 <div className="flex-grow bg-gray-50">
                     {!!items.length ? items.map(item => (
-                        <div key={Math.random()} className="flex p-3 mb-1 border-b-2 border-gray-100 items-center bg-white">
+                        <div key={item.id} className="flex p-3 mb-1 border-b-2 border-gray-100 items-center bg-white">
                             <div className="flex-grow">
                                 <div className="flex">
                                     <span className="text-gray-400">{item?.quantity}x</span> <span className="text-gray-900 ml-2 line-clamp-1 cursor-pointer">{item.title}</span>

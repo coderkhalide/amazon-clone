@@ -85,3 +85,7 @@
     max-height: 500px;
     object-fit: cover;
 }
+.active_filter{
+    border-bottom: 1px solid #ddd;
+    width: fit-content;
+}
