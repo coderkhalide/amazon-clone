@@ -41,7 +41,7 @@ function Header({setShowCart, showCart, products}) {
                         onClick={() => router.push('/')}
                     />
                 </div>
-
+ {/* Hello */}
                 {/* Search */}
                 <div className="hidden relative items-center flex-grow cursor-pointer rounded-md h-10 bg-yellow-400 sm:flex hover:bg-yellow-500">
                     <input onMouseOver={() => setShowResults(true)} onBlur={() => setShowResults(false)} onFocus={() => setShowResults(true)} value={searchTerm} onChange={handleSearch} placeholder="Search anything you need... (Live Search)" className="p-2 px-5 h-full width-6 flex-grow rounded flex-shrink rounded-l-md focus:outline-none" type="text" />
