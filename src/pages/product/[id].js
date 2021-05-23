@@ -18,6 +18,7 @@ function Details({product, products}) {
     const { name, price, images, description, colors, company, stock, reviews, category, shipping } = product
     const [activeImage, setActiveImage] = useState(images[0].thumbnails.large.url)
     const [quantity, setQuantity] = useState(1)
+    const [added, setAdded] = useState(false)
 
     const MAX_RATING = 5
     const MIN_RATING = 1
@@ -29,6 +30,8 @@ function Details({product, products}) {
     const addItemToBasket = () => {
         dispatch(addToBasket({...product, title: product.name, quantity}))
         setShowCart(true)
+        setAdded(true)
+        setTimeout(() => setAdded(false), 2000)
     }
 
     return (
@@ -85,7 +88,7 @@ function Details({product, products}) {
                             </div>
                         )}
                         <QuantityCount setQuantity={setQuantity} quantity={quantity} />
-                        <button onClick={addItemToBasket}className="w-full button mt-4">Add to Busket</button>
+                        <button onClick={addItemToBasket}className="w-full button mt-4">{added ? 'Added' : 'Add to Busket'}</button>
                     </div>
                 </div>
             </main>

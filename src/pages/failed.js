@@ -1,4 +1,5 @@
 import { XIcon } from "@heroicons/react/solid"
+import Head from "next/head"
 import { useRouter } from "next/router"
 import Header from "../components/Header"
 
@@ -6,6 +7,10 @@ function failed() {
     const router = useRouter()
 
     return (
+        <>
+        <Head>
+            <title>Payment Failed | Amazon</title>
+        </Head>
         <div className="bg-gray-100 h-screen">
             <Header />
 
@@ -20,6 +25,7 @@ function failed() {
                 </div>
             </main>
         </div>
+        </>
     )
 }
 

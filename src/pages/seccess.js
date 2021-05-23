@@ -1,10 +1,15 @@
 import Header from '../components/Header'
 import { CheckCircleIcon } from '@heroicons/react/solid'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 function seccess() {
     const router = useRouter()
     return (
+        <>
+        <Head>
+            <title>Order successful | Amazon</title>
+        </Head>
         <div className="bg-gray-100 h-screen">
             <Header />
 
@@ -19,6 +24,7 @@ function seccess() {
                 </div>
             </main>
         </div>
+        </>
     )
 }
 

@@ -2,12 +2,17 @@ import { getSession, useSession } from 'next-auth/client'
 import Header from '../components/Header'
 import db from '../../firebase'
 import Order from '../components/Order'
+import Head from 'next/head'
 
 
 function orders({ orders }) {
     const [session] = useSession()
     
     return (
+        <>
+        <Head>
+            <title>Orders | Amazon</title>
+        </Head>
         <div className="bg-gray-100 h-screen">
             <Header />
 
@@ -27,6 +32,7 @@ function orders({ orders }) {
                 </div>
             </main>
         </div>
+        </>
     )
 }
 

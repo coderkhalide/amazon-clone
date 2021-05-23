@@ -12,6 +12,7 @@ function QuickView({setShowQuick, id, products}) {
     const [quantity, setQuantity] = useState(1)
     const dispatch = useDispatch()
     const router = useRouter()
+    const [added, setAdded] = useState(false)
     
     const MAX_RATING = 5
     const MIN_RATING = 1
@@ -21,6 +22,8 @@ function QuickView({setShowQuick, id, products}) {
 
     const addItemToBasket = () => {
         dispatch(addToBasket({...product, title: product.name, quantity}))
+        setAdded(true)
+        setTimeout(() => setAdded(false), 2000)
     }
     useEffect(() => {
         const found = products.filter(product => product.id == id)[0]
@@ -72,7 +75,7 @@ function QuickView({setShowQuick, id, products}) {
                                 </div>
                             )}
                             <QuantityCount setQuantity={setQuantity} quantity={quantity} />
-                            <button onClick={addItemToBasket} className="w-full button mt-4">Add to Busket</button>
+                            <button onClick={addItemToBasket} className="w-full button mt-4">{added ? 'Added' : 'Add to Busket'}</button>
                             <button onClick={() => router.push('/product/' + product?.id)} className="w-full button mt-4">View details</button>
                         </div>
                     </div>

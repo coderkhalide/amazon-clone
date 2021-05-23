@@ -20,12 +20,15 @@ function Product({id, title, price, description, image, shipping, colors, compan
         Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING
     )
     const [showQuick, setShowQuick] = useState(false)
+    const [added, setAdded] = useState(false)
 
     const addItemToBasket = () => {
         const product = {id, title, price, description, image, shipping, colors, quantity: 1}
         
         dispatch(addToBasket(product))
         setShowCart(true)
+        setAdded(true)
+        setTimeout(() => setAdded(false), 2000)
     }
 
     return (
@@ -35,8 +38,8 @@ function Product({id, title, price, description, image, shipping, colors, compan
                 <div className={"relative flex flex-col m-5 z-40 bg-white p-8 rounded-xl " + styles.loop_product}>
                     <div className={`relative rounded-lg ${styles.product_image_wrapper}`}>
                         <Image className={"cursor-pointer rounded-lg overflow-hidden w-full " + styles.loop_product_image} loading="lazy" src={image} width={800} height={500} objectFit="cover" />
-                        <div className={ `rounded-lg ${styles.product_image_overly}`}>
-                            <div onClick={() => setShowQuick(true)} className={`button rounded-lg ${styles.product_image_overly_button}`}>
+                        <div onClick={() => setShowQuick(true)} className={ `rounded-lg cursor-pointer ${styles.product_image_overly}`}>
+                            <div className={`button rounded-lg ${styles.product_image_overly_button}`}>
                                 <span>Quick View</span>
                                 <EyeIcon className="h-6" />
                             </div>
@@ -69,7 +72,7 @@ function Product({id, title, price, description, image, shipping, colors, compan
                             <p className="text-xs text-gray-500">Free Next-day delivery</p>
                         </div>
                     )}
-                    <button title="Please Click MEEEE" onClick={addItemToBasket} className="mt-auto button">Add to Busket</button>
+                    <button title="Please Click MEEEE" onClick={addItemToBasket} className="mt-auto button">{added ? 'Added' : 'Add to Busket'}</button>
                 </div>
                 </>
             </Fade>

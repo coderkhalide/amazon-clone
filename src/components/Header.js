@@ -10,13 +10,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn, signOut, useSession } from 'next-auth/client'
 import { useRouter } from 'next/router';
-import { selectItems } from "../slices/basketSlice";
+import { selectTotalItems } from "../slices/basketSlice";
 import { useSelector } from "react-redux";
 
 function Header({setShowCart, showCart, products}) {
     const [ session ] = useSession()
     const router = useRouter()
-    const items = useSelector(selectItems)
+    const selectTotalItem = useSelector(selectTotalItems)
 
     const [searchTerm, setSearchTerm] = useState('')
     const [searchResults, setSearchResults] = useState([])
@@ -84,7 +84,7 @@ function Header({setShowCart, showCart, products}) {
                         <p className="font-extrabold md:text-sm">& Orders</p>
                     </div>
                     <div title="Please Click MEEEE" onClick={() => router.push('/checkout')} className="link relative flex items-center">
-                        <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded text-black font-bold">{items.length}</span>
+                        <span className="absolute top-0 right-0 md:right-10 h-4 w-4 bg-yellow-400 text-center rounded text-black font-bold">{selectTotalItem}</span>
                         <ShoppingCartIcon className="h-10 " />
                         <p className="font-extrabold md:text-sm hidden md:inline mt-2 ">Busket</p>
                     </div>

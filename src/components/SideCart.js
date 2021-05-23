@@ -3,7 +3,7 @@ import {
     XIcon
  } from '@heroicons/react/outline'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectItems, selectTotal, removeFromBasket } from '../slices/basketSlice'
+import { selectItems, selectTotal, removeFromBasket, selectTotalItems } from '../slices/basketSlice'
 import Currency from 'react-currency-formatter';
 import { useRouter } from 'next/router';
 
@@ -12,6 +12,7 @@ function SideCart({setShowCart}) {
     const items = useSelector(selectItems)
     const router = useRouter()
     const totalPrice = useSelector(selectTotal)
+    const selectTotalItem = useSelector(selectTotalItems)
 
     const removeItemFromBasket = (id) => { 
         dispatch(removeFromBasket({ id }))
@@ -22,7 +23,7 @@ function SideCart({setShowCart}) {
             <div className="relative z-30 w-80 bg-white h-screen flex flex-col">
                 <div className="text-white bg-amazon_blue py-3 px-3 text-center flex items-center justify-center">
                     <ShoppingCartIcon className="h-10"/>
-                    <span className="font-medium ml-4">Basket ({items.length})</span>
+                    <span className="font-medium ml-4">Basket ({selectTotalItem})</span>
                 </div>
                 <div className="flex-grow bg-gray-50">
                     {!!items.length ? items.map(item => (

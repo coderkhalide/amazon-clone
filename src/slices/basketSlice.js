@@ -22,16 +22,26 @@ export const basketSlice = createSlice({
     },
     addToBasket: (state, action) => {
       const index = state.items.findIndex(basketItem => basketItem.id == action.payload.id)
-      if(index >= 0){
-        state.items[index].quantity += action.payload.quantity
-      }else{
-        state.items = [...state.items, action.payload]
+      if(action.payload.quantity > 0){
+        if(index >= 0){
+          state.items[index].quantity += action.payload.quantity
+        }else{
+          state.items = [...state.items, action.payload]
+        }
       }
     },
     updateQuantity: (state, action) => {
       const index = state.items.findIndex(basketItem => basketItem.id == action.payload.id)
-      console.log(action.payload.quantity)
-      if(index >= 0) state.items[index].quantity = action.payload.quantity
+      
+      if(index >= 0) {
+        if(action.payload.quantity > 0){
+          state.items[index].quantity = action.payload.quantity
+        }else {
+          let newBasket = [...state.items]
+          newBasket.splice(index, 1)
+          state.items = newBasket
+        }
+      }
       else console.warn(`Can't remove product ${action.payload.id} as its does not exist!`)
     },
     removeFromBasket: (state, action) => {
@@ -53,5 +63,6 @@ export const selectItems = (state) => state.basket.items;
 export const selectProducts = (state) => state.basket.products;
 export const selectFilteredProducts = (state) => state.basket.filteredProducts;
 export const selectTotal = (state) => state.basket.items.reduce((total, item) => total + item.price * item.quantity, 0);
+export const selectTotalItems = (state) => state.basket.items.reduce((total, item) => total + item.quantity, 0);
 
 export default basketSlice.reducer;

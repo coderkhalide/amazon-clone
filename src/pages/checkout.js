@@ -2,11 +2,12 @@ import Image from "next/image"
 import { useSelector } from "react-redux"
 import CheckoutProduct from "../components/CheckoutProduct"
 import Header from "../components/Header"
-import { selectItems, selectTotal } from "../slices/basketSlice"
+import { selectItems, selectTotal, selectTotalItems } from "../slices/basketSlice"
 import Currency from 'react-currency-formatter';
 import { useSession } from "next-auth/client"
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios'
+import Head from "next/head"
 
 const stripePromise = loadStripe(process.env.stripe_public_key);
 
@@ -14,6 +15,8 @@ function Checkout({products}) {
     const [session] = useSession()
     const items = useSelector(selectItems)
     const totalPrice = useSelector(selectTotal)
+    const selectTotalItem = useSelector(selectTotalItems)
+
 
     const createCheckoutSession = async () => {
         const stripe = await stripePromise
@@ -34,6 +37,10 @@ function Checkout({products}) {
     }
 
     return (
+        <>
+        <Head>
+            <title>Checkout | Amazon</title>
+        </Head>
         <div className="bg-gray-100">
             <Header products={products} />
 
@@ -59,7 +66,7 @@ function Checkout({products}) {
                 <div className="flex flex-col bg-white p-7 shadow-md">
                     {!!items.length && (
                         <>
-                            <h2 className="whitespace-nowrap">Subtotal ({items.length} items):{" "}
+                            <h2 className="whitespace-nowrap">Subtotal ({selectTotalItem} items):{" "}
                                 <span className="font-bold text-gray-500">
                                     <Currency
                                         quantity={totalPrice}
@@ -74,6 +81,7 @@ function Checkout({products}) {
                 </div>
             </main>
         </div>
+    </>
     )
 }
 

@@ -12,7 +12,7 @@ function QuantityCount({ setQuantity, quantity = 1, dispatch = false, id = null 
     }
 
     const decreaseCount = () => {
-        if(quantity > 1) {
+        if(quantity > 0) {
             setQuantity(quantity - 1)
             updateQuantityHere(quantity - 1)
         }
