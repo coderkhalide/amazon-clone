@@ -1,8 +1,12 @@
-# Installation Steps
+# Amazon Clone
+![Template Screenshot](TemplateScreenshot.jpg?raw=true "Template Screenshot")
 
+## Live demo
+### [Live Demo](http://pocotep.com)
 
+## Installation Steps
 
-## Using npm
+### Using npm
 
 Run commands
 
@@ -12,7 +16,7 @@ Run commands
 2) ```npm run dev```
 
 
-## Or using yarn
+### Or using yarn
 
 Run commands 
 
@@ -23,6 +27,9 @@ Run commands
 3) ```yarn run dev```
 
 
-### If you see the window below then you are set to build AMAZON 2.0!
 
-![Template Screenshot](TemplateScreenshot.jpg?raw=true "Template Screenshot")
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+
