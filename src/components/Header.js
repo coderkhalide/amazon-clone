@@ -23,8 +23,10 @@ function Header({setShowCart, showCart, products}) {
     const [showResults, setShowResults] = useState(false)
 
     const handleSearch = e => {
-        setSearchTerm(e.target.value)
-        setSearchResults(products?.filter(product => product.name.includes(searchTerm)))
+        let trem = e.target.value
+        trem = trem.toLowerCase()
+        setSearchTerm(trem)
+        setSearchResults(products?.filter(product => product.name.includes(trem)))
     }
 
     return (
