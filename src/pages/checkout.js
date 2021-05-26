@@ -8,6 +8,7 @@ import { useSession } from "next-auth/client"
 import { loadStripe } from '@stripe/stripe-js';
 import axios from 'axios'
 import Head from "next/head"
+import { useEffect, useState } from "react"
 
 const stripePromise = loadStripe(process.env.stripe_public_key);
 
@@ -16,7 +17,7 @@ function Checkout({products}) {
     const items = useSelector(selectItems)
     const totalPrice = useSelector(selectTotal)
     const selectTotalItem = useSelector(selectTotalItems)
-
+    const [categorys, setCategorys] = useState([])
 
     const createCheckoutSession = async () => {
         const stripe = await stripePromise
@@ -36,6 +37,12 @@ function Checkout({products}) {
         if (result.error) alert(result.error.message)
     }
 
+    useEffect(() => {
+        const allCategories = items.map(item => item.category)
+        const unique = [...new Set(allCategories)]
+        setCategorys(unique)
+    }, [items])
+
     return (
         <>
         <Head>
@@ -54,9 +61,20 @@ function Checkout({products}) {
                             {!!items.length ? "Your Shopping Basket" : "Your Busket is emty"}
                         </h1>
 
-                        {!!items.length && items.map(item => (
-                            <CheckoutProduct key={item.id} {...item} />
-                        ))}
+                        <div className="mb-5">
+                            {!!categorys.length && categorys.map(category => (
+                                <>
+                                <h1 className="text-xl pb-4 font-medium">
+                                    {category}
+                                </h1>
+                                <div className="mb-14">
+                                    {!!items.length && items.filter(item => item.category === category).map(item => 
+                                        <CheckoutProduct key={item.id} {...item} />
+                                    )}
+                                </div>
+                                </>
+                            ))}
+                        </div>
                     </div>
 
                 </div>

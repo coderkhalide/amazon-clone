@@ -12,7 +12,7 @@ import {
 } from '@heroicons/react/outline'
 import QuickView from "./QuickView";
 
-function Product({id, title, price, description, image, shipping, colors, company, setShowCart, products}) {
+function Product({id, title, price, category, description, image, shipping, colors, company, setShowCart, products}) {
     const dispatch = useDispatch()
     const MAX_RATING = 5
     const MIN_RATING = 1
@@ -23,7 +23,7 @@ function Product({id, title, price, description, image, shipping, colors, compan
     const [added, setAdded] = useState(false)
 
     const addItemToBasket = () => {
-        const product = {id, title, price, description, image, shipping, colors, quantity: 1}
+        const product = {id, title, price, category, description, image, shipping, colors, quantity: 1}
         
         dispatch(addToBasket(product))
         setShowCart(true)
@@ -72,7 +72,7 @@ function Product({id, title, price, description, image, shipping, colors, compan
                             <p className="text-xs text-gray-500">Free Next-day delivery</p>
                         </div>
                     )}
-                    <button title="Please Click MEEEE" onClick={addItemToBasket} className="mt-auto button">{added ? 'Added' : 'Add to Busket'}</button>
+                    <button title="Add to cart" onClick={addItemToBasket} className="mt-auto button">{added ? 'Added' : 'Add to Busket'}</button>
                 </div>
                 </>
             </Fade>
