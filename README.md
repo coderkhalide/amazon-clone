@@ -1,9 +1,6 @@
 # Amazon Clone
 ![Template Screenshot](TemplateScreenshot.jpg?raw=true "Template Screenshot")
 
-## Live demo
-### [Live Demo](https://pocotep.com)
-
 ## Installation Steps
 
 ### Using npm
